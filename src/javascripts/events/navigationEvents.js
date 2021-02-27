@@ -1,7 +1,7 @@
 import { showAuthors } from '../components/authors';
 import { showBooks } from '../components/books';
 import signOut from '../helpers/auth/signOut';
-import { getAuthors } from '../helpers/data/authorData';
+import { getAuthors, getFavoriteAuthors } from '../helpers/data/authorData';
 import { getBooks, getSaleBooks } from '../helpers/data/bookData';
 
 // navigation events
@@ -20,6 +20,10 @@ const navigationEvents = () => {
     getBooks().then((booksArray) => showBooks(booksArray));
   });
 
+  // FAVORITE AUTHORS
+  document.querySelector('#favorite-authors').addEventListener('click', () => {
+    getFavoriteAuthors().then((favoriteAuthorsArray) => showAuthors(favoriteAuthorsArray));
+  });
   // SEARCH
   document.querySelector('#search').addEventListener('keyup', (e) => {
     const searchValue = document.querySelector('#search').value.toLowerCase();

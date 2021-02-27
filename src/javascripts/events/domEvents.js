@@ -64,6 +64,7 @@ const domEvents = () => {
         first_name: document.querySelector('#firstName').value,
         last_name: document.querySelector('#lastName').value,
         email: document.querySelector('#authorEmail').value,
+        favorite: document.querySelector('#favorite-author').checked
       };
 
       createAuthors(authorObject).then((authorsArray) => showAuthors(authorsArray));
