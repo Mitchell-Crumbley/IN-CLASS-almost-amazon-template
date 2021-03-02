@@ -12,7 +12,7 @@ const showAuthors = (array) => {
         <h5 class="card-title">${item.first_name}</h5>
         <h4 class="card-title">${item.last_name}</h4>
         <h6 class="card-title">${item.email}</h6>
-        <button class="btn btn-danger" id="delete-book--${item.firebaseKey}">Delete Book</button>
+        <button class="btn btn-danger" id="delete-author--${item.firebaseKey}">Delete Author</button>
         </div>
       </div>`;
     document.querySelector('#store').innerHTML += `${item}`;
