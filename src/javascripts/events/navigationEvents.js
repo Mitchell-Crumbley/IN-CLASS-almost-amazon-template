@@ -5,7 +5,7 @@ import { getAuthors, getFavoriteAuthors } from '../helpers/data/authorData';
 import { getBooks, getSaleBooks } from '../helpers/data/bookData';
 
 // navigation events
-const navigationEvents = () => {
+const navigationEvents = (uid) => {
   // LOGOUT BUTTON
   document.querySelector('#logout-button')
     .addEventListener('click', signOut);
@@ -17,7 +17,7 @@ const navigationEvents = () => {
   // ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
     // GET ALL BOOKS on click
-    getBooks().then((booksArray) => showBooks(booksArray));
+    getBooks(uid).then((booksArray) => showBooks(booksArray));
   });
 
   // FAVORITE AUTHORS
@@ -41,7 +41,7 @@ const navigationEvents = () => {
 
   // FIXME: STUDENTS Create an event listener for the Authors
   document.querySelector('#authors').addEventListener('click', () => {
-    getAuthors().then((authorsArray) => showAuthors(authorsArray));
+    getAuthors(uid).then((authorsArray) => showAuthors(authorsArray));
   });
 };
   // 1. When a user clicks the authors link, make a call to firebase to get all authors
