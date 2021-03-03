@@ -1,3 +1,5 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import axios from 'axios';
 import firebaseConfig from '../auth/apiKeys';
 // API CALLS FOR BOOKS
@@ -37,9 +39,21 @@ const getSaleBooks = () => new Promise((resolve, reject) => {
       const saleBooksArray = Object.values(response.data); resolve(saleBooksArray);
     }).catch((error) => reject(error));
 });
-// UPDATE BOOK
-// SEARCH BOOKS
+// Get Single Book
+const getSignleBook = (fireaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/books/${fireaseKey}.json`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
 
+// UPDATE BOOK
+const updateBook = (firebaseKey, bookObject) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/books/${firebaseKey}.json`, bookObject)
+    .then(() => getBooks(firebase.auth().currentUser.uid)).then((booksArray) => resolve(booksArray))
+    .catch((error) => reject(error));
+});
+
+// SEARCH BOOKS
 export {
-  getBooks, createBook, getSaleBooks, deleteBook
+  getBooks, createBook, getSaleBooks, deleteBook, getSignleBook, updateBook
 };
